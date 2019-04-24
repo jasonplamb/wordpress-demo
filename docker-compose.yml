@@ -47,6 +47,11 @@ services:
       - frontend
       - backend
 
+    # Not discussed during the conference but ensures that MariaDB is brought up before Wordpress (https://docs.docker.com/compose/compose-file/#depends_on)
+    # NOTE: Please read the link document and note that it does not ensure that MariaDB is actually READY but simply started before Wordpress
+    depends_on:
+      - mariadb
+
   # MariaDB container using the official MariaDB image
   mariadb:
     image: mariadb:latest
@@ -96,3 +101,8 @@ services:
     networks:
       - frontend
       - backend
+
+    # Not discussed during the conference but ensures that MariaDB is brought up before Wordpress (https://docs.docker.com/compose/compose-file/#depends_on)
+    # NOTE: Please read the link document and note that it does not ensure that MariaDB is actually READY but simply started before Wordpress
+    depends_on:
+      - mariadb
